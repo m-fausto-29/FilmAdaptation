@@ -74,7 +74,7 @@ class Plaza extends Phaser.Scene {
             if (this.score >= this.maxScore) {
                 this.scene.start('Title');
             }else if (this.score < this.maxScore) {
-                this.scene.start('Cutscene_P');
+                this.scene.start('gameOver');
             } //check if player has won or lost
             //this.scene.start('Title'); //when timer is over switch to the next scene
         })
