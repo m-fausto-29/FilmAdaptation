@@ -11,6 +11,7 @@ class Plaza extends Phaser.Scene {
     }
 
     preload(){
+        //loading used assets
         this.load.image('bg', './assets/temp_bg.png');
         this.load.image("AKey", "./assets/AKey.png");
         this.load.image("DKey", "./assets/DKey.png");
@@ -22,19 +23,24 @@ class Plaza extends Phaser.Scene {
 
     create() {
 
+        // setting the background
         this.bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg').setOrigin(0, 0);
         this.bg.setDepth(-1);
+
+        //initializing the keys
         this.keysVelocity = -80;
-        
         this.keys = ["A", "D", "S", "Q", "W"];
         this.keyGroups = {};
         this.keyButtons = {};
         let buttonX = 89;
+
+        //initializing the target
         this.target = this.physics.add.sprite(game.config.width / 2, game.config.height / 2 + 4, "target");
         this.target.body.setSize(8, 30);
-        let collide = false;
-        this.score = 0;       
 
+        //initializing the score and collider
+        this.score = 0;
+        let collide = false;       
         this.input.keyboard.on('keydown', collide =>
         {
 
@@ -46,7 +52,7 @@ class Plaza extends Phaser.Scene {
         this.scoreText = this.add.text(100, 100, "SCORE", { fontFamily: "arial", fontSize: "50px" });
         
 
-        for (let key of this.keys) {
+        for (let key of this.keys) { //generating the keys and their buttons
             this.keyGroups[key] = this.physics.add.group({ velocityX: this.keysVelocity });
             this.keyButtons[key] = this.add.sprite(buttonX, game.config.height - 90, key + "Key");
             buttonX += 20;
@@ -54,32 +60,35 @@ class Plaza extends Phaser.Scene {
             this.keyButtons[key].setInteractive();
             this.keyButtons[key].on('keydown', () => {
                 collide = true;
-                this.processKey(key);
+                this.processKey(key); //process the key to check overlap
             });
         }
 
+        // randomized key deployment
         this.time.addEvent({
             delay: 1500,
             callback: this.deployKey,
             callbackScope: this,
             loop: true
         });
-        
         this.deployKey()
         this.time.delayedCall(9000, () => {
-            this.scene.start('Title');
+            this.scene.start('Title'); //when timer is over switch to the next scene
         })
+
+        //setting the time
         this.startTime = Date.now();
     }
-    deployKey() {
+
+    deployKey() { //function to deploy the keys with use of helper functions
         let key = randomElem(this.keys);
         this.keyGroups[key].add(this.add.sprite(game.config.width, game.config.height / 2, key + "Key"));
     }
 
-    processKey(key) {
-        if (this.physics.world.overlap(this.target, this.keyGroups[key] && isKeyPressed(key + "Key"))) {
+    processKey(key) { //function to process the key and check for overlap
+        if (this.physics.world.overlap(this.target, this.keyButtons[key] && isKeyPressed(key + "Key"))) {
             collide = true;
-            let group = this.keyGroups[key].getChildren();
+            let group = this.keyButtons[key].getChildren();
             group.shift().destroy();
             // increase the score and update the text
             this.score += 100;
@@ -92,7 +101,8 @@ class Plaza extends Phaser.Scene {
             this.updateScoreText();
         }
     }
-    updateScoreText() {
+
+    updateScoreText() { //function to update the score text
         this.scoreText.text = this.score;
     }
 }
