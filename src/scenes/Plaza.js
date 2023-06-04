@@ -40,13 +40,7 @@ class Plaza extends Phaser.Scene {
 
         //initializing the score and collider
         this.score = 0;
-        let collide = false;       
-        this.input.keyboard.on('keydown', collide =>
-        {
-
-            collide = true;
-
-        });
+        //let collide = false;       
 
         // The score text
         this.scoreText = this.add.text(100, 100, "SCORE", { fontFamily: "arial", fontSize: "50px" });
@@ -58,10 +52,15 @@ class Plaza extends Phaser.Scene {
             buttonX += 20;
 
             this.keyButtons[key].setInteractive();
-            this.keyButtons[key].on('keydown', () => {
-                collide = true;
+            // this.keyButtons[key].on('keydown', () => {
+            //     collide = true;
+            //     this.processKey(key); //process the key to check overlap
+            // });
+            this.input.keyboard.on("keydown-" + key, () => {
+                //collide = true;
                 this.processKey(key); //process the key to check overlap
             });
+
         }
 
         // randomized key deployment
@@ -86,16 +85,16 @@ class Plaza extends Phaser.Scene {
     }
 
     processKey(key) { //function to process the key and check for overlap
-        if (this.physics.world.overlap(this.target, this.keyButtons[key] && isKeyPressed(key + "Key"))) {
-            collide = true;
-            let group = this.keyButtons[key].getChildren();
+        if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
+            //collide = true;
+            let group = this.keyGroups[key].getChildren();
             group.shift().destroy();
             // increase the score and update the text
             this.score += 100;
             this.updateScoreText();
         }
         else{
-            collide = false;
+            //collide = false;
             this.cameras.main.shake(100, 0.01);
             this.score -= 200;
             this.updateScoreText();
