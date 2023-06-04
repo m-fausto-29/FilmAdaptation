@@ -14,6 +14,6 @@ let config = {
             debug: false, //set to true for debugging while building and testing
         }
     },
-    scene: [ Title, Plaza, Plaza_Cutscene, Gameover ] 
+    scene: [ Title, Plaza, Plaza_Cutscene, Carousel, Carousel_Cutscene, Barn, Barn_Cutscene, Gameover, Gameover1, Gameover2 ] 
 }
 let game = new Phaser.Game(config);
