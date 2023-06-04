@@ -5,9 +5,9 @@ let config = {
     type: Phaser.AUTO,
     height: 640,
     width: 700,
-    // scale: {
-    //     autoCenter: Phaser.Scale.CENTER_BOTH
-    // },
+    scale: {
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     physics: {
         default: 'arcade',
         arcade: {

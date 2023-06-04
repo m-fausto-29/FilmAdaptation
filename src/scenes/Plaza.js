@@ -38,10 +38,9 @@ class Plaza extends Phaser.Scene {
         this.target = this.physics.add.sprite(game.config.width / 2, game.config.height / 2 + 4, "target");
         this.target.body.setSize(8, 30);
 
-        //initializing the score and collider
+        //initializing the score and goal score
         this.score = 0;
-        this.maxScore = 500;
-        //let collide = false;       
+        this.maxScore = 500;   
 
         // The score text
         this.scoreText = this.add.text(100, 100, "SCORE", { fontFamily: "arial", fontSize: "50px" });
@@ -53,10 +52,6 @@ class Plaza extends Phaser.Scene {
             buttonX += 20;
 
             this.keyButtons[key].setInteractive();
-            // this.keyButtons[key].on('keydown', () => {
-            //     collide = true;
-            //     this.processKey(key); //process the key to check overlap
-            // });
             this.input.keyboard.on("keydown-" + key, () => {
                 //collide = true;
                 this.processKey(key); //process the key to check overlap
@@ -72,7 +67,7 @@ class Plaza extends Phaser.Scene {
             loop: true
         });
         this.deployKey()
-        this.time.delayedCall(9500, () => {
+        this.time.delayedCall(12000, () => {
             if (this.score >= this.maxScore) {
                 this.scene.start('Title');
             }else if (this.score < this.maxScore) {
@@ -92,15 +87,13 @@ class Plaza extends Phaser.Scene {
 
     processKey(key) { //function to process the key and check for overlap
         if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
-            //collide = true;
             let group = this.keyGroups[key].getChildren();
             group.shift().destroy();
             // increase the score and update the text
             this.score += 100;
             this.updateScoreText();
         }
-        else{
-            //collide = false;
+        else{//if the key is not pressed on time, shake the camera and decrease the score
             this.cameras.main.shake(100, 0.01);
             this.score -= 200;
             this.updateScoreText();
