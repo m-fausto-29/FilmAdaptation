@@ -19,6 +19,8 @@ class Plaza extends Phaser.Scene {
         this.load.image("QKey", "./assets/QKey.png");
         this.load.image("WKey", "./assets/WKey.png");
         this.load.image("target", "assets/target.png");
+        //loading used sfx
+        this.load.audio('beep2', './assets/temp_beep2.wav');
     }
 
     create() {
@@ -54,6 +56,7 @@ class Plaza extends Phaser.Scene {
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
                 //collide = true;
+                this.sound.play('beep2');
                 this.processKey(key); //process the key to check overlap
             });
 

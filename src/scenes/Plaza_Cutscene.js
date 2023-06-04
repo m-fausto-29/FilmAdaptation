@@ -4,6 +4,7 @@ class Plaza_Cutscene extends Phaser.Scene {
     }
     preload(){
         this.load.image('cutscene', './assets/temp_cutscene.png');
+        this.load.audio('beep1', './assets/temp_beep1.wav');
     }
 
     create(){
@@ -16,6 +17,7 @@ class Plaza_Cutscene extends Phaser.Scene {
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+            this.sound.play('beep1');
             this.scene.start('Plaza');
         }
     }
