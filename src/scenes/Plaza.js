@@ -40,6 +40,7 @@ class Plaza extends Phaser.Scene {
 
         //initializing the score and collider
         this.score = 0;
+        this.maxScore = 500;
         //let collide = false;       
 
         // The score text
@@ -71,8 +72,13 @@ class Plaza extends Phaser.Scene {
             loop: true
         });
         this.deployKey()
-        this.time.delayedCall(9000, () => {
-            this.scene.start('Title'); //when timer is over switch to the next scene
+        this.time.delayedCall(9500, () => {
+            if (this.score >= this.maxScore) {
+                this.scene.start('Title');
+            }else if (this.score < this.maxScore) {
+                this.scene.start('Cutscene_P');
+            } //check if player has won or lost
+            //this.scene.start('Title'); //when timer is over switch to the next scene
         })
 
         //setting the time
