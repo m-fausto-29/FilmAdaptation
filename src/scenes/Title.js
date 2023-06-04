@@ -1,6 +1,6 @@
 class Title extends Phaser.Scene {
     constructor(){
-        super("menuScene");
+        super("Title");
     }
     preload(){
         this.load.image('title', './assets/temp_title.png');
