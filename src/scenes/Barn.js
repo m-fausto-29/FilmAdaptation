@@ -72,7 +72,7 @@ class Barn extends Phaser.Scene {
         this.deployKey()
         this.time.delayedCall(12000, () => {
             if (this.score >= this.maxScore) {
-                this.scene.start('Title');
+                this.scene.start('end');
             }else if (this.score < this.maxScore) {
                 this.scene.start('gameOver2');
             } //check if player has won or lost
