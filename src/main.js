@@ -15,5 +15,6 @@ let config = {
         }
     },
     scene: [ Title, Plaza, Plaza_Cutscene, Carousel, Carousel_Cutscene, Barn, Barn_Cutscene, Gameover, Gameover1, Gameover2, Ending ] 
+    // Notes: Add input delay when pressing the keys, increase the size of the sprites, add animations
 }
 let game = new Phaser.Game(config);

@@ -51,7 +51,7 @@ class Carousel extends Phaser.Scene {
         for (let key of this.keys) { //generating the keys and their buttons
             this.keyGroups[key] = this.physics.add.group({ velocityX: this.keysVelocity });
             this.keyButtons[key] = this.add.sprite(buttonX, game.config.height - 90, key + "Key");
-            buttonX += 20;
+            buttonX += 20; //increase speed of keys
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
@@ -70,7 +70,7 @@ class Carousel extends Phaser.Scene {
             loop: true
         });
         this.deployKey()
-        this.time.delayedCall(12000, () => {
+        this.time.delayedCall(12000, () => { //decrease the timer
             if (this.score >= this.maxScore) {
                 this.scene.start('Cutscene_B');
             }else if (this.score < this.maxScore) {
