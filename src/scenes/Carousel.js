@@ -12,7 +12,7 @@ class Carousel extends Phaser.Scene {
 
     preload(){
         //loading used assets
-        this.load.image('bg', './assets/temp_bg.png');
+        this.load.image('bg', './assets/temp_bg2.png');
         this.load.image("AKey", "./assets/AKey.png");
         this.load.image("DKey", "./assets/DKey.png");
         this.load.image("SKey", "./assets/SKey.png");
@@ -72,7 +72,7 @@ class Carousel extends Phaser.Scene {
         this.deployKey()
         this.time.delayedCall(12000, () => {
             if (this.score >= this.maxScore) {
-                this.scene.start('Barn');
+                this.scene.start('Cutscene_B');
             }else if (this.score < this.maxScore) {
                 this.scene.start('gameOver1');
             } //check if player has won or lost

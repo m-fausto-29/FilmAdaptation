@@ -12,7 +12,7 @@ class Plaza extends Phaser.Scene {
 
     preload(){
         //loading used assets
-        this.load.image('bg', './assets/temp_bg.png');
+        this.load.image('bg', './assets/temp_bg1.png');
         this.load.image("AKey", "./assets/AKey.png");
         this.load.image("DKey", "./assets/DKey.png");
         this.load.image("SKey", "./assets/SKey.png");
@@ -72,7 +72,7 @@ class Plaza extends Phaser.Scene {
         this.deployKey()
         this.time.delayedCall(12000, () => {
             if (this.score >= this.maxScore) {
-                this.scene.start('Carousel');
+                this.scene.start('Cutscene_C');
             }else if (this.score < this.maxScore) {
                 this.scene.start('gameOver');
             } //check if player has won or lost
