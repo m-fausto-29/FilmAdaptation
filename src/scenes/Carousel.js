@@ -74,7 +74,7 @@ class Carousel extends Phaser.Scene {
             if (this.score >= this.maxScore) {
                 this.scene.start('Title');
             }else if (this.score < this.maxScore) {
-                this.scene.start('gameOver');
+                this.scene.start('gameOver1');
             } //check if player has won or lost
             //this.scene.start('Title'); //when timer is over switch to the next scene
         })
