@@ -12,7 +12,7 @@ class Barn extends Phaser.Scene {
 
     preload(){
         //loading used assets
-        this.load.image('bg', './assets/temp_bg3.png');
+        this.load.image('bg2', './assets/temp_bg3.png');
         this.load.image("AKey", "./assets/AKey.png");
         this.load.image("DKey", "./assets/DKey.png");
         this.load.image("SKey", "./assets/SKey.png");
@@ -26,8 +26,8 @@ class Barn extends Phaser.Scene {
     create() {
 
         // setting the background
-        this.bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg').setOrigin(0, 0);
-        this.bg.setDepth(-1);
+        this.bg2 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg2').setOrigin(0, 0);
+        this.bg2.setDepth(-1);
 
         //initializing the keys
         this.keysVelocity = -80;

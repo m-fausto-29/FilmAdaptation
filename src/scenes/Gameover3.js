@@ -3,13 +3,13 @@ class Gameover2 extends Phaser.Scene{
         super("gameOver2");
     }
     preload(){
-        this.load.image('gg', './assets/temp_gameover3.png');
+        this.load.image('gg2', './assets/temp_gameover3.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }
 
     create(){
         // adding gameover screen
-        this.gameover = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gg').setOrigin(0, 0);
+        this.gameover2 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gg2').setOrigin(0, 0);
 
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
