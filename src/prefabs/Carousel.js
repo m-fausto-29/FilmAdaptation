@@ -30,11 +30,11 @@ class Carousel extends Phaser.Scene {
         this.bg1.setDepth(-1);
 
         //initializing the keys
-        this.keysVelocity = -80;
+        this.keysVelocity = -200; //speed of the keys
         this.keys = ["A", "D", "S", "Q", "W"];
         this.keyGroups = {};
         this.keyButtons = {};
-        let buttonX = 89;
+        let buttonX = 89; //position of the display buttons
 
         //initializing the target
         this.target = this.physics.add.sprite(game.config.width / 2, game.config.height / 2 + 4, "target");
@@ -51,7 +51,7 @@ class Carousel extends Phaser.Scene {
         for (let key of this.keys) { //generating the keys and their buttons
             this.keyGroups[key] = this.physics.add.group({ velocityX: this.keysVelocity });
             this.keyButtons[key] = this.add.sprite(buttonX, game.config.height - 90, key + "Key");
-            buttonX += 20; //increase speed of keys
+            buttonX += 20; //spacing between the display buttons
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
@@ -64,7 +64,7 @@ class Carousel extends Phaser.Scene {
 
         // randomized key deployment
         this.time.addEvent({
-            delay: 1500,
+            delay: 1200,
             callback: this.deployKey,
             callbackScope: this,
             loop: true
@@ -90,8 +90,8 @@ class Carousel extends Phaser.Scene {
 
     processKey(key) { //function to process the key and check for overlap
         if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
-            let group = this.keyGroups[key].getChildren();
-            group.shift().destroy();
+            // let group = this.keyGroups[key].getChildren();
+            // group.shift().destroy();
             // increase the score and update the text
             this.score += 100;
             this.updateScoreText();

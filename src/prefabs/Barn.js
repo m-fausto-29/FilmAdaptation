@@ -30,7 +30,7 @@ class Barn extends Phaser.Scene {
         this.bg2.setDepth(-1);
 
         //initializing the keys
-        this.keysVelocity = -80;
+        this.keysVelocity = -250;
         this.keys = ["A", "D", "S", "Q", "W"];
         this.keyGroups = {};
         this.keyButtons = {};
@@ -64,7 +64,7 @@ class Barn extends Phaser.Scene {
 
         // randomized key deployment
         this.time.addEvent({
-            delay: 1500,
+            delay: 1000,
             callback: this.deployKey,
             callbackScope: this,
             loop: true
@@ -89,18 +89,21 @@ class Barn extends Phaser.Scene {
     }
 
     processKey(key) { //function to process the key and check for overlap
+        //let group = this.keyGroups[key].getChildren();
         if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
-            let group = this.keyGroups[key].getChildren();
-            group.shift().destroy();
+            //let group1 = this.keyGroups[key].getChildren();
+            //group.shift().destroy();
             // increase the score and update the text
             this.score += 100;
             this.updateScoreText();
         }
-        else{//if the key is not pressed on time, shake the camera and decrease the score
+        else{
+            //group.shift().destroy();
             this.cameras.main.shake(100, 0.01);
             this.score -= 200;
             this.updateScoreText();
         }
+        //group2.shift().destroy();
     }
 
     updateScoreText() { //function to update the score text
