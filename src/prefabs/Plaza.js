@@ -5,6 +5,7 @@ function randomInt(min, max) {
 function randomElem(array) {
     return array[randomInt(0, array.length)]
 }
+
 class Plaza extends Phaser.Scene {
     constructor() {
         super("Plaza");
@@ -76,7 +77,6 @@ class Plaza extends Phaser.Scene {
             }else if (this.score < this.maxScore) {
                 this.scene.start('gameOver');
             } //check if player has won or lost
-            //this.scene.start('Title'); //when timer is over switch to the next scene
         })
 
         //setting the time
@@ -89,10 +89,8 @@ class Plaza extends Phaser.Scene {
     }
 
     processKey(key) { //function to process the key and check for overlap
+        this.timeLeft -= 1;
         if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
-            // let group = this.keyGroups[key].getChildren();
-            // group.shift().destroy();
-            // increase the score and update the text
             this.score += 100;
             this.updateScoreText();
         }

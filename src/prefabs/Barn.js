@@ -55,7 +55,6 @@ class Barn extends Phaser.Scene {
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
-                //collide = true;
                 this.sound.play('beep2');
                 this.processKey(key); //process the key to check overlap
             });
@@ -76,7 +75,6 @@ class Barn extends Phaser.Scene {
             }else if (this.score < this.maxScore) {
                 this.scene.start('gameOver2');
             } //check if player has won or lost
-            //this.scene.start('Title'); //when timer is over switch to the next scene
         })
 
         //setting the time
@@ -89,21 +87,16 @@ class Barn extends Phaser.Scene {
     }
 
     processKey(key) { //function to process the key and check for overlap
-        //let group = this.keyGroups[key].getChildren();
         if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
-            //let group1 = this.keyGroups[key].getChildren();
-            //group.shift().destroy();
             // increase the score and update the text
             this.score += 100;
             this.updateScoreText();
         }
         else{
-            //group.shift().destroy();
             this.cameras.main.shake(100, 0.01);
             this.score -= 200;
             this.updateScoreText();
         }
-        //group2.shift().destroy();
     }
 
     updateScoreText() { //function to update the score text
