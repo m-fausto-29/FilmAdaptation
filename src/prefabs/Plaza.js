@@ -1,3 +1,5 @@
+
+//helper functions to aid in randomly generating the keys
 function randomInt(min, max) {
     return Math.floor(Phaser.Math.Linear(min, max, Math.random()));
 }
