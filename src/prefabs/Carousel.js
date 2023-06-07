@@ -26,6 +26,23 @@ class Carousel extends Phaser.Scene {
 
     create() {
 
+        playerStatus = {//init player status with default timer value
+            timer: 100
+        }
+
+        // timer bar
+        this.timerBorder = this.add.rectangle(game.config.width - 106, 4, 102, 7, 0xffffff);
+        this.timerBorder.setOrigin(0, 0).setScrollFactor(0);
+        this.timerMeter = this.add.rectangle(game.config.width - 105, 5, 100, 5, 0x0000ff).setOrigin(0, 0);
+        this.timerMeter.setScrollFactor(0);
+
+        this.playTimer = this.time.addEvent({ //init timer bar event
+            delay: 120,
+            callback: this.decrTimer,
+            callbackScope: this,
+            loop: true
+        });
+
         // setting the background
         this.bg1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg1').setOrigin(0, 0);
         this.bg1.setDepth(-1);
@@ -98,6 +115,15 @@ class Carousel extends Phaser.Scene {
             this.cameras.main.shake(100, 0.01);
             this.score -= 200;
             this.updateScoreText();
+        }
+    }
+
+    decrTimer() { //function to decrease the timer bar
+        let newTimer = Math.max(0, playerStatus.timer - 1);
+        playerStatus.timer = newTimer;
+        this.timerMeter.displayWidth = newTimer;
+        if (newTimer === 0){
+            this.timerBorder.setFillStyle(0xff0000, 1);
         }
     }
 
