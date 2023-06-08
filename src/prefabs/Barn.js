@@ -31,9 +31,9 @@ class Barn extends Phaser.Scene {
         }
 
         // timer bar
-        this.timerBorder = this.add.rectangle(game.config.width - 106, 4, 102, 7, 0xffffff);
+        this.timerBorder = this.add.rectangle(game.config.width - 140, 30, 102, 25, 0xffffff);
         this.timerBorder.setOrigin(0, 0).setScrollFactor(0);
-        this.timerMeter = this.add.rectangle(game.config.width - 105, 5, 100, 5, 0x0000ff).setOrigin(0, 0);
+        this.timerMeter = this.add.rectangle(game.config.width - 139, 31, 100, 23, 0x0000ff).setOrigin(0, 0);
         this.timerMeter.setScrollFactor(0);
 
         this.playTimer = this.time.addEvent({ //init timer bar event
@@ -55,7 +55,7 @@ class Barn extends Phaser.Scene {
         let buttonX = 89;
 
         //initializing the target
-        this.target = this.physics.add.sprite(game.config.width / 2, game.config.height / 2 + 4, "target");
+        this.target = this.physics.add.sprite(game.config.width / 7, game.config.height / 2 + 175, "target");
         this.target.body.setSize(8, 30);
 
         //initializing the score and goal score
@@ -63,7 +63,7 @@ class Barn extends Phaser.Scene {
         this.maxScore = 500;   
 
         // The score text
-        this.scoreText = this.add.text(100, 100, "SCORE", { fontFamily: "arial", fontSize: "50px" });
+        this.scoreText = this.add.text(80, 33, "SCORE", { fontFamily: "papyrus", fontSize: "30px" });
         
 
         for (let key of this.keys) { //generating the keys and their buttons
@@ -101,7 +101,7 @@ class Barn extends Phaser.Scene {
 
     deployKey() { //function to deploy the keys with use of helper functions
         let key = randomElem(this.keys);
-        this.keyGroups[key].add(this.add.sprite(game.config.width, game.config.height / 2, key + "Key"));
+        this.keyGroups[key].add(this.add.sprite(game.config.width, game.config.height / 2 + 170, key + "Key"));
     }
 
     processKey(key) { //function to process the key and check for overlap
