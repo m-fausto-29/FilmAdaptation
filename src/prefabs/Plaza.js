@@ -16,13 +16,13 @@ class Plaza extends Phaser.Scene {
 
     preload(){
         //loading used assets
-        this.load.image('bg', './assets/temp_bg1.png');
-        this.load.image("AKey", "./assets/AKey.png");
-        this.load.image("DKey", "./assets/DKey.png");
-        this.load.image("SKey", "./assets/SKey.png");
-        this.load.image("QKey", "./assets/QKey.png");
-        this.load.image("WKey", "./assets/WKey.png");
-        this.load.image("target", "assets/target.png");
+        this.load.image('bg', './assets/temp1_gp.png');
+        this.load.image("AKey", "./assets/AKey1.png");
+        this.load.image("DKey", "./assets/DKey1.png");
+        this.load.image("SKey", "./assets/SKey1.png");
+        this.load.image("QKey", "./assets/QKey1.png");
+        this.load.image("WKey", "./assets/WKey1.png");
+        this.load.image("target", "assets/target2.png");
         //loading used sfx
         this.load.audio('beep2', './assets/temp_beep2.wav');
     }
@@ -34,9 +34,9 @@ class Plaza extends Phaser.Scene {
         }
 
         // timer bar
-        this.timerBorder = this.add.rectangle(game.config.width - 140, 30, 102, 25, 0xffffff);
+        this.timerBorder = this.add.rectangle(game.config.width - 215, 95, 102, 25, 0x000000);
         this.timerBorder.setOrigin(0, 0).setScrollFactor(0);
-        this.timerMeter = this.add.rectangle(game.config.width - 139, 31, 100, 23, 0x0000ff).setOrigin(0, 0);
+        this.timerMeter = this.add.rectangle(game.config.width - 213, 96, 100, 23, 0x0000ff).setOrigin(0, 0);
         this.timerMeter.setScrollFactor(0);
 
         this.playTimer = this.time.addEvent({ //init timer bar event
@@ -55,10 +55,10 @@ class Plaza extends Phaser.Scene {
         this.keys = ["A", "D", "S", "Q", "W"];
         this.keyGroups = {};
         this.keyButtons = {};
-        let buttonX = 89;
+        let buttonX = 296;
 
         //initializing the target
-        this.target = this.physics.add.sprite(game.config.width / 7, game.config.height / 2 + 175, "target");
+        this.target = this.physics.add.sprite(game.config.width / 5, game.config.height / 2 + 140, "target");
         this.target.body.setSize(8, 30);
 
         //initializing the score and goal score
@@ -66,13 +66,14 @@ class Plaza extends Phaser.Scene {
         this.maxScore = 500;   
 
         // The score text
-        this.scoreText = this.add.text(80, 33, "SCORE", { fontFamily: "papyrus", fontSize: "30px" }); //changing the font
+        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#000000', }); //changing the font
         
 
         for (let key of this.keys) { //generating the keys and their buttons
             this.keyGroups[key] = this.physics.add.group({ velocityX: this.keysVelocity });
-            this.keyButtons[key] = this.add.sprite(buttonX, game.config.height - 60, key + "Key");
-            buttonX += 20;
+            this.keyButtons[key] = this.add.sprite(buttonX, game.config.height - 93, key + "Key");
+            this.keyButtons[key].setScale(.3);
+            buttonX += 28;
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
@@ -105,7 +106,7 @@ class Plaza extends Phaser.Scene {
 
     deployKey() { //function to deploy the keys with use of helper functions
         let key = randomElem(this.keys);
-        this.keyGroups[key].add(this.add.sprite(game.config.width, game.config.height / 2 + 170, key + "Key"));
+        this.keyGroups[key].add(this.add.sprite(game.config.width, game.config.height / 2 + 136, key + "Key"));
     }
 
     processKey(key) { //function to process the key and check for overlap
