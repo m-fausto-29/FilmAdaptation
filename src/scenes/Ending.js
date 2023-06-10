@@ -3,7 +3,7 @@ class Ending extends Phaser.Scene{
         super("end");
     }
     preload(){
-        this.load.image('gg3', './assets/temp_ending.png');
+        this.load.image('gg3', './assets/official_ending.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }
 

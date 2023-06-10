@@ -16,7 +16,8 @@ class Plaza extends Phaser.Scene {
 
     preload(){
         //loading used assets
-        this.load.image('bg', './assets/temp1_gp.png');
+        this.load.image('bg', './assets/official_gameplay.png');
+        this.load.image('anim', './assets/temp_anim_bg.png');
         this.load.image("AKey", "./assets/AKey1.png");
         this.load.image("DKey", "./assets/DKey1.png");
         this.load.image("SKey", "./assets/SKey1.png");
@@ -48,7 +49,10 @@ class Plaza extends Phaser.Scene {
 
         // setting the background
         this.bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg').setOrigin(0, 0);
-        this.bg.setDepth(-1);
+        this.bg.setDepth(10);
+
+        this.anim_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'anim').setOrigin(0, 0);
+        this.anim_bg.setDepth(-1);
 
         //initializing the keys
         this.keysVelocity = -80;
@@ -122,6 +126,7 @@ class Plaza extends Phaser.Scene {
         }
     }
     decrTimer() { //function to decrease the timer bar
+        this.anim_bg.tilePositionX += 4;
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;
