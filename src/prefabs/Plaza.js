@@ -55,7 +55,7 @@ class Plaza extends Phaser.Scene {
         this.anim_bg.setDepth(-1);
 
         //initializing the keys
-        this.keysVelocity = -80;
+        this.keysVelocity = -95;
         this.keys = ["A", "D", "S", "Q", "W"];
         this.keyGroups = {};
         this.keyButtons = {};
