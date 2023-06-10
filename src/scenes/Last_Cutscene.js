@@ -3,7 +3,7 @@ class Last_Cutscene extends Phaser.Scene {
         super("Cutscene_L");
     }
     preload(){
-        this.load.image('cutscene3', './assets/official_cutscene_layout.png');
+        this.load.image('cutscene3', './assets/official_last_scene.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }
 
