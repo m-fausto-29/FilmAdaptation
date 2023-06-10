@@ -3,7 +3,7 @@ class Gameover2 extends Phaser.Scene{
         super("gameOver2");
     }
     preload(){
-        this.load.image('gg2', './assets/temp_gameover3.png');
+        this.load.image('gg2', './assets/official_gameover.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }
 
