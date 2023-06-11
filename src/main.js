@@ -11,7 +11,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false, //set to true for debugging while building and testing
+            debug: true, //set to true for debugging while building and testing
         }
     },
     scene: [ Title, Plaza, Plaza_Cutscene, Carousel, Carousel_Cutscene, Barn, Barn_Cutscene, Gameover, Gameover1, Gameover2, Victory1, Victory2, Last_Cutscene, Ending ] 
