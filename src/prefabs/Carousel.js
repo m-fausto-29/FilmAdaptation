@@ -65,7 +65,7 @@ class Carousel extends Phaser.Scene {
         });
 
         // add boy
-        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_push', 'push(1)');
+        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_push', 'push(1)').setScale(2);
 
         //initializing the keys
         this.keysVelocity = -200; //speed of the keys

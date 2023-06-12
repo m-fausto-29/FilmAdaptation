@@ -65,7 +65,7 @@ class Barn extends Phaser.Scene {
         });
 
         // add boy
-        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_punch', 'punch(1)');
+        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_punch', 'punch(1)').setScale(2);
 
         //initializing the keys
         this.keysVelocity = -250;
