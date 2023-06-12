@@ -27,6 +27,7 @@ class Plaza extends Phaser.Scene {
         this.load.atlas('play_cut', 'assets/plaza_spritesheet.png', 'assets/cut.json');
         //loading used sfx
         this.load.audio('beep2', './assets/temp_beep2.wav');
+        this.load.audio('beep3', './assets/explosion38.wav');
     }
 
     create() {
@@ -97,8 +98,7 @@ class Plaza extends Phaser.Scene {
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
-                //collide = true;
-                this.sound.play('beep2');
+                //this.sound.play('beep2');
                 this.processKey(key); //process the key to check overlap
             });
 
@@ -132,11 +132,13 @@ class Plaza extends Phaser.Scene {
     processKey(key) { //function to process the key and check for overlap
         this.timeLeft -= 1;
         if (this.physics.world.overlap(this.target, this.keyGroups[key])) {
+            this.sound.play('beep2');
             this.score += 100;
             this.updateScoreText();
         }
         else{//if the key is not pressed on time, shake the camera and decrease the score
             this.cameras.main.shake(100, 0.01);
+            this.sound.play('beep3');
             this.score -= 200;
             this.updateScoreText();
         }
