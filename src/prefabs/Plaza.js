@@ -17,13 +17,14 @@ class Plaza extends Phaser.Scene {
     preload(){
         //loading used assets
         this.load.image('bg', './assets/official_gameplay.png');
-        this.load.image('anim', './assets/temp_anim_bg.png');
+        this.load.image('back', './assets/plaza_bg.png');
         this.load.image("AKey", "./assets/AKey1.png");
         this.load.image("DKey", "./assets/DKey1.png");
         this.load.image("SKey", "./assets/SKey1.png");
         this.load.image("QKey", "./assets/QKey1.png");
         this.load.image("WKey", "./assets/WKey1.png");
         this.load.image("target", "assets/target2.png");
+        this.load.atlas('play_cut', 'assets/plaza_spritesheet.png', 'assets/cut.json');
         //loading used sfx
         this.load.audio('beep2', './assets/temp_beep2.wav');
     }
@@ -51,8 +52,23 @@ class Plaza extends Phaser.Scene {
         this.bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg').setOrigin(0, 0);
         this.bg.setDepth(10);
 
-        this.anim_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'anim').setOrigin(0, 0);
-        this.anim_bg.setDepth(-1);
+        this.back_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'back').setOrigin(0, 0);
+        this.back_bg.setDepth(-1);
+
+        this.anims.create({
+            key: 'cut',
+            frames: this.anims.generateFrameNames('play_cut', {
+                prefix: 'cut(',
+                start: 1,
+                end: 2,
+                suffix: ')'
+            }),
+            frameRate: 3,
+            repeat: -1      // loop animation
+        });
+
+        // add animation
+        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_cut', 'cut(1)');
 
         //initializing the keys
         this.keysVelocity = -95;
@@ -126,7 +142,8 @@ class Plaza extends Phaser.Scene {
         }
     }
     decrTimer() { //function to decrease the timer bar
-        this.anim_bg.tilePositionX += 4;
+        this.boy.play('cut', true);
+        //this.anim_bg.tilePositionX += 4;
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;

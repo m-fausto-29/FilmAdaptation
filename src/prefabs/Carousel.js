@@ -14,13 +14,14 @@ class Carousel extends Phaser.Scene {
     preload(){
         //loading used assets
         this.load.image('bg1', './assets/official_gameplay.png');
-        this.load.image('anim', './assets/temp_anim_bg.png');
+        this.load.image('anim', './assets/carousel_bg.png');
         this.load.image("AKey", "./assets/AKey.png");
         this.load.image("DKey", "./assets/DKey.png");
         this.load.image("SKey", "./assets/SKey.png");
         this.load.image("QKey", "./assets/QKey.png");
         this.load.image("WKey", "./assets/WKey.png");
         this.load.image("target", "assets/target.png");
+        this.load.atlas('play_push', 'assets/carousel_spritesheet.png', 'assets/push.json');
         //loading used sfx
         this.load.audio('beep2', './assets/temp_beep2.wav');
     }
@@ -51,6 +52,21 @@ class Carousel extends Phaser.Scene {
         this.anim_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'anim').setOrigin(0, 0);
         this.anim_bg.setDepth(-1);
 
+        this.anims.create({
+            key: 'push',
+            frames: this.anims.generateFrameNames('play_push', {
+                prefix: 'push(',
+                start: 1,
+                end: 2,
+                suffix: ')'
+            }),
+            frameRate: 3,
+            repeat: -1      // loop animation
+        });
+
+        // add boy
+        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_push', 'push(1)');
+
         //initializing the keys
         this.keysVelocity = -200; //speed of the keys
         this.keys = ["A", "D", "S", "Q", "W"];
@@ -64,7 +80,7 @@ class Carousel extends Phaser.Scene {
 
         //initializing the score and goal score
         this.score = 0;
-        this.maxScore = 500;   
+        this.maxScore = 800;   
 
         // The score text
         this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#000000', });
@@ -125,6 +141,7 @@ class Carousel extends Phaser.Scene {
     }
 
     decrTimer() { //function to decrease the timer bar
+        this.boy.play('push', true);
         this.anim_bg.tilePositionX += 4;
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;

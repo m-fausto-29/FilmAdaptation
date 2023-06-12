@@ -14,13 +14,14 @@ class Barn extends Phaser.Scene {
     preload(){
         //loading used assets
         this.load.image('bg2', './assets/official_gameplay.png');
-        this.load.image('anim', './assets/temp_anim_bg.png');
+        this.load.image('back1', './assets/barn_bg.png');
         this.load.image("AKey", "./assets/AKey.png");
         this.load.image("DKey", "./assets/DKey.png");
         this.load.image("SKey", "./assets/SKey.png");
         this.load.image("QKey", "./assets/QKey.png");
         this.load.image("WKey", "./assets/WKey.png");
         this.load.image("target", "assets/target.png");
+        this.load.atlas('play_punch', 'assets/barn_spritesheet.png', 'assets/punch.json');
         //loading used sfx
         this.load.audio('beep2', './assets/temp_beep2.wav');
     }
@@ -48,8 +49,23 @@ class Barn extends Phaser.Scene {
         this.bg2 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg2').setOrigin(0, 0);
         this.bg2.setDepth(10);
 
-        this.anim_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'anim').setOrigin(0, 0);
-        this.anim_bg.setDepth(-1);
+        this.back_bg1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'back1').setOrigin(0, 0);
+        this.back_bg1.setDepth(-1);
+
+        this.anims.create({
+            key: 'punch',
+            frames: this.anims.generateFrameNames('play_punch', {
+                prefix: 'punch(',
+                start: 1,
+                end: 2,
+                suffix: ')'
+            }),
+            frameRate: 3,
+            repeat: -1      // loop animation
+        });
+
+        // add boy
+        this.boy = this.add.sprite(game.config.width/2, game.config.height/2, 'play_punch', 'punch(1)');
 
         //initializing the keys
         this.keysVelocity = -250;
@@ -64,10 +80,10 @@ class Barn extends Phaser.Scene {
 
         //initializing the score and goal score
         this.score = 0;
-        this.maxScore = 500;   
+        this.maxScore = 1000;   
 
         // The score text
-        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#000000', });
+        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#FFFFFF', });
         
 
         for (let key of this.keys) { //generating the keys and their buttons
@@ -124,7 +140,8 @@ class Barn extends Phaser.Scene {
     }
 
     decrTimer() { //function to decrease the timer bar
-        this.anim_bg.tilePositionX += 4;
+        this.boy.play('punch', true);
+        //this.anim_bg.tilePositionX += 4;
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;

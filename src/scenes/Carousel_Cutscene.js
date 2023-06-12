@@ -3,7 +3,7 @@ class Carousel_Cutscene extends Phaser.Scene {
         super("Cutscene_C");
     }
     preload(){
-        this.load.image('cutscene1', './assets/official_carousel_scene.png');
+        this.load.image('cutscene1', './assets/carousel_cutscene.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }
 
