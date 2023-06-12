@@ -8,6 +8,10 @@ class Title extends Phaser.Scene {
     }
 
     create(){
+        //adding fade in effect
+        this.cameras.main.setBackgroundColor('#421278');
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
+
         // adding title screen
         this.title = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'title').setOrigin(0, 0);
 
@@ -18,7 +22,13 @@ class Title extends Phaser.Scene {
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){ 
             this.sound.play('beep1');
-            this.scene.start('Cutscene_P');
+            //adding fade out effect
+            this.cameras.main.fadeOut(1000, 0, 0, 0); 
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.time.delayedCall(1000, () => {
+                    this.scene.start('Cutscene_P');
+                })
+            });
         }
     }
 }

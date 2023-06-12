@@ -8,6 +8,10 @@ class Gameover2 extends Phaser.Scene{
     }
 
     create(){
+        //adding fade in effect
+        this.cameras.main.setBackgroundColor('#421278');
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+
         // adding gameover screen
         this.gameover2 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'gg2').setOrigin(0, 0);
 
@@ -18,7 +22,13 @@ class Gameover2 extends Phaser.Scene{
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){ 
             this.sound.play('beep1');
-            this.scene.start('Barn');
+            //adding fade out effect
+            this.cameras.main.fadeOut(1000, 0, 0, 0); 
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                this.time.delayedCall(1000, () => {
+                    this.scene.start('Barn');
+                })
+            });
         }
     }
 }
