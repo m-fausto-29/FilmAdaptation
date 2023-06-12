@@ -2,7 +2,7 @@ class Title extends Phaser.Scene {
     constructor(){
         super("Title");
     }
-    preload(){
+    preload(){ //preloading relevant assets
         this.load.image('title', './assets/official_title.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }

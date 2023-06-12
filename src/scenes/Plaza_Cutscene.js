@@ -2,7 +2,7 @@ class Plaza_Cutscene extends Phaser.Scene {
     constructor(){
         super("Cutscene_P");
     }
-    preload(){
+    preload(){ //preloading relevant assets
         this.load.image('cutscene', './assets/plaza_cutscene.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }

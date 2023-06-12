@@ -56,7 +56,7 @@ class Plaza extends Phaser.Scene {
         this.back_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'back').setOrigin(0, 0);
         this.back_bg.setDepth(-1);
 
-        this.anims.create({
+        this.anims.create({ //creating the animation
             key: 'cut',
             frames: this.anims.generateFrameNames('play_cut', {
                 prefix: 'cut(',
@@ -120,8 +120,6 @@ class Plaza extends Phaser.Scene {
             } //check if player has won or lost
         })
 
-        //setting the time
-        this.startTime = Date.now();
     }
 
     deployKey() { //function to deploy the keys with use of helper functions
@@ -144,8 +142,7 @@ class Plaza extends Phaser.Scene {
         }
     }
     decrTimer() { //function to decrease the timer bar
-        this.boy.play('cut', true);
-        //this.anim_bg.tilePositionX += 4;
+        this.boy.play('cut', true); //play the animation
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;

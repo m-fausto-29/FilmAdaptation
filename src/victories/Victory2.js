@@ -2,7 +2,7 @@ class Victory2 extends Phaser.Scene{
     constructor(){
         super("victory2");
     }
-    preload(){
+    preload(){ //preloading relevant assets
         this.load.image('ez1', './assets/official_victory.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }

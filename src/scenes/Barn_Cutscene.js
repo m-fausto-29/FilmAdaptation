@@ -2,7 +2,7 @@ class Barn_Cutscene extends Phaser.Scene {
     constructor(){
         super("Cutscene_B");
     }
-    preload(){
+    preload(){ //preloading relevant assets
         this.load.image('cutscene2', './assets/barn_cutscene.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }

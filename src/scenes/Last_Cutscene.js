@@ -2,7 +2,7 @@ class Last_Cutscene extends Phaser.Scene {
     constructor(){
         super("Cutscene_L");
     }
-    preload(){
+    preload(){ //preloading relevant assets
         this.load.image('cutscene3', './assets/last_cutscene.png');
         this.load.audio('beep1', './assets/temp_beep1.wav');
     }

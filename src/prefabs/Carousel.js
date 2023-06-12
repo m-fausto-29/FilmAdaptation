@@ -53,7 +53,7 @@ class Carousel extends Phaser.Scene {
         this.anim_bg = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'anim').setOrigin(0, 0);
         this.anim_bg.setDepth(-1);
 
-        this.anims.create({
+        this.anims.create({ //creating push animation
             key: 'push',
             frames: this.anims.generateFrameNames('play_push', {
                 prefix: 'push(',
@@ -95,8 +95,6 @@ class Carousel extends Phaser.Scene {
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
-                //collide = true;
-                ///this.sound.play('beep2');
                 this.processKey(key); //process the key to check overlap
             });
 
@@ -118,8 +116,6 @@ class Carousel extends Phaser.Scene {
             } //check if player has won or lost
         })
 
-        //setting the time
-        this.startTime = Date.now();
     }
 
     deployKey() { //function to deploy the keys with use of helper functions
@@ -144,8 +140,8 @@ class Carousel extends Phaser.Scene {
     }
 
     decrTimer() { //function to decrease the timer bar
-        this.boy.play('push', true);
-        this.anim_bg.tilePositionX -= 4;
+        this.boy.play('push', true); //play the push animation
+        this.anim_bg.tilePositionX -= 4; //move the background
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;

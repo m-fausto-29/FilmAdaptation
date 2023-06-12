@@ -46,14 +46,14 @@ class Barn extends Phaser.Scene {
             loop: true
         });
 
-        // setting the background
+        // setting the backgrounds
         this.bg2 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'bg2').setOrigin(0, 0);
         this.bg2.setDepth(10);
 
         this.back_bg1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'back1').setOrigin(0, 0);
         this.back_bg1.setDepth(-1);
 
-        this.anims.create({
+        this.anims.create({ //creating the punch animation
             key: 'punch',
             frames: this.anims.generateFrameNames('play_punch', {
                 prefix: 'punch(',
@@ -95,7 +95,6 @@ class Barn extends Phaser.Scene {
 
             this.keyButtons[key].setInteractive();
             this.input.keyboard.on("keydown-" + key, () => {
-                //this.sound.play('beep2');
                 this.processKey(key); //process the key to check overlap
             });
 
@@ -116,9 +115,6 @@ class Barn extends Phaser.Scene {
                 this.scene.start('gameOver2');
             } //check if player has won or lost
         })
-
-        //setting the time
-        this.startTime = Date.now();
     }
 
     deployKey() { //function to deploy the keys with use of helper functions
@@ -143,8 +139,7 @@ class Barn extends Phaser.Scene {
     }
 
     decrTimer() { //function to decrease the timer bar
-        this.boy.play('punch', true);
-        //this.anim_bg.tilePositionX += 4;
+        this.boy.play('punch', true); //play the punch animation
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;
