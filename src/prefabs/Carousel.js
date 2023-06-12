@@ -83,7 +83,7 @@ class Carousel extends Phaser.Scene {
         this.maxScore = 800;   
 
         // The score text
-        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#000000', });
+        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "50px", color: '#000000', });
         
 
         for (let key of this.keys) { //generating the keys and their buttons
@@ -142,7 +142,7 @@ class Carousel extends Phaser.Scene {
 
     decrTimer() { //function to decrease the timer bar
         this.boy.play('push', true);
-        this.anim_bg.tilePositionX += 4;
+        this.anim_bg.tilePositionX -= 4;
         let newTimer = Math.max(0, playerStatus.timer - 1);
         playerStatus.timer = newTimer;
         this.timerMeter.displayWidth = newTimer;

@@ -86,7 +86,7 @@ class Plaza extends Phaser.Scene {
         this.maxScore = 500;   
 
         // The score text
-        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#000000', }); //changing the font
+        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "50px", color: '#000000', }); //changing the font
         
 
         for (let key of this.keys) { //generating the keys and their buttons

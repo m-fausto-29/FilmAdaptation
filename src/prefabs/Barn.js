@@ -83,7 +83,7 @@ class Barn extends Phaser.Scene {
         this.maxScore = 1000;   
 
         // The score text
-        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "30px", color: '#FFFFFF', });
+        this.scoreText = this.add.text(95, 88, "SCORE", { fontFamily: "papyrus", fontSize: "50px", color: '#ffffff', });
         
 
         for (let key of this.keys) { //generating the keys and their buttons
