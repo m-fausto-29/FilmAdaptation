@@ -19,16 +19,10 @@ class Title extends Phaser.Scene {
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
 
-        // //startup sounds
-        // this.bgm = this.sound.add('play_bgm');
-        // this.bgm.setLoop(true);
-        // this.time.delayedCall(100, () => {
-        //     this.bgm.play();})
     }
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){ 
-            //this.bgm.stop();
             this.sound.play('beep1');
             //adding fade out effect
             this.cameras.main.fadeOut(1000, 0, 0, 0); 
