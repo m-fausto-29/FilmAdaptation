@@ -4,7 +4,8 @@ class Ending extends Phaser.Scene{
     }
     preload(){ //preloading relevant assets
         this.load.image('gg3', './assets/official_ending.png');
-        this.load.audio('beep1', './assets/temp_beep1.wav');
+        this.load.audio('beep1', './assets/scene_transition.wav');
+        this.load.audio('play_end', './assets/ending_music.wav');
     }
 
     create(){
@@ -17,10 +18,17 @@ class Ending extends Phaser.Scene{
 
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+
+        //startup sounds
+        this.end_bgm = this.sound.add('play_end');
+        this.end_bgm.setLoop(true);
+        this.time.delayedCall(100, () => {
+            this.end_bgm.play();})
     }
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){ 
+            this.end_bgm.stop();
             this.sound.play('beep1');
             //adding fade out effect
             this.cameras.main.fadeOut(1000, 0, 0, 0); 

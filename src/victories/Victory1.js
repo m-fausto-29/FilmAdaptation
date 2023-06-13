@@ -4,7 +4,7 @@ class Victory1 extends Phaser.Scene{
     }
     preload(){ //preloading relevant assets
         this.load.image('ez', './assets/official_victory.png');
-        this.load.audio('beep1', './assets/temp_beep1.wav');
+        this.load.audio('beep1', './assets/scene_transition.wav');
     }
 
     create(){

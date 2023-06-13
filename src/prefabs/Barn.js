@@ -23,7 +23,7 @@ class Barn extends Phaser.Scene {
         this.load.image("target", "assets/target.png");
         this.load.atlas('play_punch', 'assets/barn_spritesheet.png', 'assets/punch.json');
         //loading used sfx
-        this.load.audio('beep2', './assets/temp_beep2.wav');
+        this.load.audio('beep2', './assets/correct_beep.wav');
         this.load.audio('beep3', './assets/explosion38.wav');
     }
 

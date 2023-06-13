@@ -26,7 +26,7 @@ class Plaza extends Phaser.Scene {
         this.load.image("target", "assets/target2.png");
         this.load.atlas('play_cut', 'assets/plaza_spritesheet.png', 'assets/cut.json');
         //loading used sfx
-        this.load.audio('beep2', './assets/temp_beep2.wav');
+        this.load.audio('beep2', './assets/correct_beep.wav');
         this.load.audio('beep3', './assets/explosion38.wav');
     }
 

@@ -23,7 +23,7 @@ class Carousel extends Phaser.Scene {
         this.load.image("target", "assets/target.png");
         this.load.atlas('play_push', 'assets/carousel_spritesheet.png', 'assets/push.json');
         //loading used sfx
-        this.load.audio('beep2', './assets/temp_beep2.wav');
+        this.load.audio('beep2', './assets/correct_beep.wav');
         this.load.audio('beep3', './assets/explosion38.wav');
     }
 

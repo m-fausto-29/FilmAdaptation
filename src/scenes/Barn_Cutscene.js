@@ -4,7 +4,8 @@ class Barn_Cutscene extends Phaser.Scene {
     }
     preload(){ //preloading relevant assets
         this.load.image('cutscene2', './assets/barn_cutscene.png');
-        this.load.audio('beep1', './assets/temp_beep1.wav');
+        this.load.audio('beep1', './assets/scene_transition.wav');
+        this.load.audio('play_bgm', './assets/cutscene_music.wav');
     }
 
     create(){
@@ -17,10 +18,17 @@ class Barn_Cutscene extends Phaser.Scene {
 
         // defining keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+
+        //startup sounds
+        this.bgm = this.sound.add('play_bgm');
+        this.bgm.setLoop(true);
+        this.time.delayedCall(100, () => {
+            this.bgm.play();})
     }
 
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+            this.bgm.stop();
             this.sound.play('beep1');
             //adding fade out effect
             this.cameras.main.fadeOut(1000, 0, 0, 0); 
